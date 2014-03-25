@@ -1,0 +1,26 @@
+{
+  "name": "text-3d-particles",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.coffee",
+  "scripts": {
+    "example": "beefy index.js --live --cwd example"
+  },
+  "author": "David Guttman",
+  "license": "MIT",
+  "dependencies": {
+    "coffeeify": "^0.6.0",
+    "three": "^0.66.2",
+    "ease-component": "^1.0.0"
+  },
+  "devDependencies": {
+    "beefy": "^1.1.0",
+    "browserify": "^3.33.0"
+  },
+  "browserify": {
+    "transform": [
+      "coffeeify"
+    ]
+  },
+  "browser": "index.coffee"
+}
