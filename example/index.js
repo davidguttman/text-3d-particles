@@ -7,6 +7,7 @@ var opts =
   , fontSize: 400
   , density: 15
   , nodeSize: 20
+  , foreground: '#707070'
   , background: '#f6f6f6'
   }
 

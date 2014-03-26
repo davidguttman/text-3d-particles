@@ -101,7 +101,7 @@ Spriter::generateSprite = ->
 
   ctx = canvas.getContext '2d'
   
-  ctx.fillStyle = 'rgb(46,46,46)'
+  ctx.fillStyle = @opts.foreground ? 'rgb(46,46,46)'
   
   r = canvas.width/4
   ctx.beginPath()
