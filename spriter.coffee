@@ -6,8 +6,6 @@ cameraZ = 600
 originVector = new THREE.Vector3 0,0,0
 
 module.exports = Spriter = (@shapeCanvas, @opts = {}, @cb) ->
-  @playing = true
-
   {density, background} = @opts
   
   ar = @shapeCanvas.width / @shapeCanvas.height
@@ -31,7 +29,10 @@ module.exports = Spriter = (@shapeCanvas, @opts = {}, @cb) ->
 
   @el.appendChild @renderer.domElement
 
-  @animate()
+  @initAnimation()
+  unless @opts.autoStart is false
+    @playing = true
+    @animate()
 
   return this
 
@@ -64,35 +65,18 @@ Spriter::initParticle = (x, y) ->
 
   return particle
 
-thetaStart = 1.10 * Math.PI
-thetaEnd = 2 * Math.PI
-theta = thetaStart
+Spriter::initAnimation = ->
+  @thetaStart = @opts.thetaStart ? 1.10 * Math.PI
+  @thetaEnd = @opts.thetaEnd ? 2 * Math.PI
+  @theta = @thetaStart
 
-duration = 10000
-timeStart = timeEnd = null
+  @duration = @opts.duration or 10000
+  @timeStart = @timeEnd = null
 
-Spriter::animate = -> 
+Spriter::animate = ->
   return unless @playing
   requestAnimationFrame @animate.bind(this)
-  
-  now = Date.now()
-  timeStart = timeStart or now
-  timeEnd = timeEnd or timeStart + duration
-
-  if theta >= thetaEnd * 0.9999
-    theta = thetaEnd
-    @playing = false
-    @cb()
-
-  p = (now - timeStart) / duration
-  val = ease.inOutSine p
-  theta = thetaStart + (thetaEnd - thetaStart) * val
-  
-  @camera.position.x = Math.sin(theta) * cameraZ
-  @camera.position.y = Math.sin(theta) * cameraZ
-  @camera.position.z = Math.cos(theta) * cameraZ
-  @camera.lookAt originVector
-  @renderer.render @scene, @camera
+  @render()
 
 Spriter::generateSprite = ->
   canvas = document.createElement 'canvas'
@@ -110,6 +94,26 @@ Spriter::generateSprite = ->
   ctx.closePath()
 
   return canvas
+
+Spriter::render = (p) ->
+  now = Date.now()
+  @timeStart = @timeStart or now
+  @timeEnd = @timeEnd or @timeStart + @duration
+
+  if @theta >= @thetaEnd * 0.9999
+    @theta = @thetaEnd
+    @playing = false
+    @cb()
+
+  p = p ? (now - @timeStart) / @duration
+  val = ease.inOutSine p
+  @theta = @thetaStart + (@thetaEnd - @thetaStart) * val
+  
+  @camera.position.x = Math.sin(@theta) * cameraZ
+  @camera.position.y = Math.sin(@theta) * cameraZ
+  @camera.position.z = Math.cos(@theta) * cameraZ
+  @camera.lookAt originVector
+  @renderer.render @scene, @camera
 
 getColor = (img, x, y) ->
   data = img.data

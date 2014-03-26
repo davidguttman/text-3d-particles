@@ -21,4 +21,4 @@ module.exports = (opts = {}, cb = ->) ->
 
   spriter = new Spriter canvas, opts, cb
   spriter.el.classList.add 'text-graph-3d'
-  return spriter.el
+  return spriter
