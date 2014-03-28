@@ -2,6 +2,8 @@
 
 Hard to explain, but looks cool.
 
+![star](http://i.imgur.com/hsVV9I4.gif)
+
 To see it in action:
 
     npm run example
@@ -13,13 +15,12 @@ Usage:
 var text3dParticles = require('text-3d-particles')
 
 var opts = 
-  { width: 800
+  { width: 400
   , height: 400
   , text: '★'
-  , fontSize: 400
-  , density: 15
-  , nodeSize: 20
+  , foreground: '#707070'
   , background: '#f6f6f6'
+  , duration: 6000
   }
 
 var textGraph = text3dParticles(opts, function() {

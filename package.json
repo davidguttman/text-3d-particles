@@ -1,7 +1,7 @@
 {
   "name": "text-3d-particles",
   "version": "0.2.0",
-  "description": "",
+  "description": "Hard to explain, but looks cool.",
   "main": "index.coffee",
   "scripts": {
     "example": "beefy index.js --live --cwd example"
@@ -23,5 +23,16 @@
       "coffeeify"
     ]
   },
-  "browser": "index.coffee"
+  "browser": "index.coffee",
+  "directories": {
+    "example": "example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/davidguttman/text-3d-particles.git"
+  },
+  "bugs": {
+    "url": "https://github.com/davidguttman/text-3d-particles/issues"
+  },
+  "homepage": "https://github.com/davidguttman/text-3d-particles"
 }
