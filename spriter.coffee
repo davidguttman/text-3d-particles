@@ -1,4 +1,5 @@
 THREE = require 'three'
+Emitter = require 'wildemitter'
 ease = require 'ease-component'
 
 cameraZ = 600
@@ -6,6 +7,7 @@ cameraZ = 600
 originVector = new THREE.Vector3 0,0,0
 
 module.exports = Spriter = (@shapeCanvas, @opts = {}, @cb) ->
+  Emitter.call this
   {density, background} = @opts
   
   ar = @shapeCanvas.width / @shapeCanvas.height
@@ -35,6 +37,8 @@ module.exports = Spriter = (@shapeCanvas, @opts = {}, @cb) ->
     @animate()
 
   return this
+
+Spriter.prototype = new Emitter
 
 Spriter::addParticles = (shapeCanvas, density = 20) ->
   shapeContext = @shapeCanvas.getContext '2d'
@@ -114,6 +118,7 @@ Spriter::render = (p) ->
   @camera.position.z = Math.cos(@theta) * cameraZ
   @camera.lookAt originVector
   @renderer.render @scene, @camera
+  @emit 'progress', p
 
 getColor = (img, x, y) ->
   data = img.data
