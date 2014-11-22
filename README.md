@@ -27,7 +27,7 @@ var textGraph = text3dParticles(opts, function() {
   console.log('Animation completed.')
 })
 
-document.body.appendChild(textGraph)
+document.body.appendChild(textGraph.el)
 
 ```
 
