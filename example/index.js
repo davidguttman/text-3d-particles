@@ -12,10 +12,11 @@ var opts =
   , duration: 10000
   , thetaStart: 0
   , thetaEnd: 2 * Math.PI
+  , loop: true
   }
 
 var particles = text3dParticles(opts, function() {
-  console.log('Animation completed.')
+  console.log('Animation completed.') // would get called if opts.loop != true
 })
 
 document.body.appendChild(particles.el)

@@ -105,9 +105,12 @@ Spriter::render = (p) ->
   @timeEnd = @timeEnd or @timeStart + @duration
 
   if @theta >= @thetaEnd * 0.9999
-    @theta = @thetaEnd
-    @playing = false
-    @cb()
+    if @opts.loop
+      return @initAnimation()
+    else
+      @theta = @thetaEnd
+      @playing = false
+      @cb()
 
   p = p ? (now - @timeStart) / @duration
   val = ease.inOutSine p

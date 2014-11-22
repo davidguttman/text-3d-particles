@@ -8,6 +8,7 @@ module.exports = (opts = {}, cb = ->) ->
   opts.text ?= 'D'
   opts.fontSize ?= opts.height
   opts.nodeSize ?= opts.height / 20
+  opts.loop ?= false
   
   canvas = document.createElement 'canvas'
   canvas.width = w = opts.width
