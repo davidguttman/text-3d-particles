@@ -1,6 +1,6 @@
 {
   "name": "text-3d-particles",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Hard to explain, but looks cool.",
   "main": "index.coffee",
   "scripts": {
